@@ -1,0 +1,16 @@
+#import libraries
+library(data.table)
+library(tidyverse)
+library(dplyr)
+
+#import dataset
+melbourne <- fread("Melbourne_housing_FULL.csv")
+
+#remove unneeded columns
+houseData <- select(melbourne, -Address,-Date, -Landsize, -Lattitude, 
+                    -Longtitude, -SellerG, -BuildingArea, -Propertycount, 
+                    -Regionname, -CouncilArea, -Bedroom2)
+
+#change NA values to 0
+houseData[is.na(houseData)] = 0
+
